@@ -1,0 +1,19 @@
+{
+  "name": "shore report",
+  "version": "1.0.0",
+  "description": "daily new jersey beach information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tommilburn/shore-report.git"
+  },
+  "author": "tom milburn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tommilburn/shore-report/issues"
+  },
+  "homepage": "https://github.com/tommilburn/shore-report#readme"
+}
