@@ -8,7 +8,7 @@ var temperature = ""
 function Ocean(url, selector){
 	this.url = url;
 	this.selector = selector;
-	var temperature = "error";
+	var temperature = {};
 	this.update = function update(){
 		console.log("temp 1 = " + temperature);
 		console.log(this.temperature)
