@@ -1,14 +1,15 @@
 require('dotenv').config();
-const express = require('express');
 const DarkSky = require('dark-sky');
 const forecast = new DarkSky(process.env.DARKSKY_KEY);
+const moment = require('moment');
 
 module.exports = Weather;
 
 function Weather(latitude, longitude){
   'use strict';
-  var weather = {}
+  var weather = {};
   var rawData;
+  var events = [];
   this.update = function () {
     forecast
     .latitude(latitude)
@@ -17,32 +18,32 @@ function Weather(latitude, longitude){
     .get()
     .then(function(res){
       rawData = res;
-      buildWeather();
+      weather.currently = rawData.currently;
+      weather.days = [];
+      weather.events = []
+      for(var i = 0; i < rawData.daily.data.length; i++){
+        weather.days.push({type: "weather", date: moment().startOf('day').add(i, 'days'), info: rawData.daily.data[i]});
+        weather.events.push({type:"Sunrise", date: moment(rawData.daily.data[i].sunriseTime, "X")});
+        weather.events.push({type:"Sunset", date: moment(rawData.daily.data[i].sunsetTime, "X")});
+      }
     })
     .catch(function(err){
       console.log(err);
     });
   };
-  function buildWeather(){
-    weather.today = {}
-    weather.tomorrow = {}
-    weather.today.temperature = rawData.currently.apparentTemperature;
-    weather.today.humidity = rawData.currently.humidity;
-    weather.today.precipitation = rawData.currently.precipProbability;
-    weather.today.wind = rawData.currently.windSpeed;
-    weather.today.summary = rawData.daily.data[0].summary;
-    weather.today.high = rawData.daily.data[0].temperatureMax;
-    weather.today.low = rawData.daily.data[0].temperatureMin;
-    weather.today.sunrise = rawData.daily.data[0].sunriseTime; 
-    weather.today.sunset = rawData.daily.data[0].sunsetTime; 
+  
 
-    weather.tomorrow.summary = rawData.daily.data[1].summary;
-    weather.tomorrow.sunrise = rawData.daily.data[1].sunriseTime;
-    weather.tomorrow.sunset = rawData.daily.data[1].sunsetTime;
-    weather.tomorrow.high = rawData.daily.data[1].temperatureMax;
-    weather.tomorrow.low = rawData.daily.data[1].temperatureMin;
+  this.weatherOnDay = function(requestedDay){
+    for(var i = 0; i < weather.days.length; i++){
+      console.log(weather.days[i].date);
+      if(moment(weather.days[i].date).isSame(requestedDay, "day")){
+        return weather.days[i].info
+      }
+    }
   }
-  this.getWeather = function(){
-    return weather;
+
+  this.currentWeather = function(){
+    return weather.currently;
   }
+
 }

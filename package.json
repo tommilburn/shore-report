@@ -4,6 +4,7 @@
   "description": "daily new jersey beach information",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon -e js,pug index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,9 @@
     "dark-sky": "^1.0.10",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "moment": "^2.18.1",
+    "pug": "^2.0.0-rc.2",
+    "request": "^2.81.0",
     "x-ray": "^2.3.2"
   }
 }
