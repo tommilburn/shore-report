@@ -1,8 +1,23 @@
-- console.log(water)
-- console.log(tides)
-html
-  p #{weather.summary}
-  p #{parseInt(weather.apparentTemperatureMax)}&deg;F / #{parseInt(weather.apparentTemperatureMin)}&deg;F
-  p Ocean temp: #{ocean}
-
-
+extends layout.pug  
+block content
+  if currentWeather
+    .event.weather
+      p now: #{parseInt(currentWeather.temperature)}&deg;F
+      p humidity: #{parseInt(currentWeather.humidity * 100)}%
+      p precipitation: #{parseInt(currentWeather.precipProbability * 100)}%
+      p winds: #{parseInt(currentWeather.windSpeed)} mph
+      if !weather.error
+        p #{weather.summary}
+        p #{parseInt(weather.apparentTemperatureMax)}&deg;F / #{parseInt(weather.apparentTemperatureMin)}&deg;F
+        p ocean: #{ocean}
+  else
+    p Current weather is unavailable, currently!
+  if events.length > 2 
+    each event in events
+      .event(class=event.type)
+        h4 
+          =event.type
+        h2
+          =event.date.format('h:mm a')
+  else
+    p Events aren't updating properly. Please try again later.

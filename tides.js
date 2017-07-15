@@ -1,15 +1,14 @@
 const request = require('request');
+const moment = require('moment');
 
 module.exports = Tides;
 
 function Tides(url){
-  console.log("tide request made");
   'use strict';
   var tideData
-  var events = {};
+  var tideEvents = [];
   this.update = function(){
     request(url, function(err, res, body){
-      console.log(body); 
       if(body){
         tideData = JSON.parse(body);
         buildTides();
@@ -17,8 +16,16 @@ function Tides(url){
     });
   }
   function buildTides() {
-    events.today = [];
-     
+    for(var i = 0; i < tideData.predictions.length; i ++){
+      var tideEvent = {}
+      if(tideData.predictions[i].type === "H"){
+        tideEvent.type = "high tide";
+      } else {
+        tideEvent.type = "low tide";
+      }
+      tideEvent.date = moment(tideData.predictions[i].t);
+      tideEvents.push(tideEvent);
+    }
   }
   this.getTides = function(){
     if(tideData.predictions){
@@ -26,5 +33,10 @@ function Tides(url){
     } else {
       return "error";
     }
+  }
+  this.tidesOnDay = function(requestedDay){
+    return tideEvents.filter(function(el){
+      return(moment(el.date).isSame(requestedDay, "day"));
+    });
   }
 }

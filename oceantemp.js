@@ -10,16 +10,14 @@ function Ocean(url, selector){
 	this.selector = selector;
 	var temperature = {};
 	this.update = function update(){
-		console.log("temp 1 = " + temperature);
-		console.log(this.temperature)
 		xray(url, selector)(function(err, result){
 			if(err){
 				console.log(err);
-				temperature = "error"
+				temperature = "unavailable"
 			} else if(result.indexOf("°" != -1)){
 				temperature = result.trim();
 			} else {
-				temperature = "error";
+				temperature = "unavailable";
 			}
 		})
 	}

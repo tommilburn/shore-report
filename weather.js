@@ -28,21 +28,34 @@ function Weather(latitude, longitude){
       }
     })
     .catch(function(err){
-      console.log(err);
+      console.log("error" + err);
+      weather.error = err;
     });
   };
   
 
   this.weatherOnDay = function(requestedDay){
-    for(var i = 0; i < weather.days.length; i++){
-      console.log(weather.days[i].date);
-      if(moment(weather.days[i].date).isSame(requestedDay, "day")){
-        return weather.days[i].info
+    if(weather.days){
+      for(var i = 0; i < weather.days.length; i++){
+        if(moment(weather.days[i].date).isSame(requestedDay, "day")){
+          return weather.days[i].info
+        }
       }
+    } else {
+      return {error: weather.error};
+    }
+  }
+  this.eventsOnDay = function(requestedDay){
+    if(weather.events){
+      return weather.events.filter(function(weatherEvent){
+        return moment(weatherEvent.date).isSame(requestedDay, "day");
+      })
+    } else {
+      return {error: weather.error};
     }
   }
 
-  this.currentWeather = function(){
+  this.getCurrentWeather = function(){
     return weather.currently;
   }
 
