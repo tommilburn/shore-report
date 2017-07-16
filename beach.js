@@ -6,7 +6,7 @@ var tides = require('./tides.js');
 module.exports = Beach
 
 function Beach(source){
-  currentData = {};
+  var currentData = {};
   console.log(source);
 
   currentData.weather = new weather(source.longitude, source.latitude);
