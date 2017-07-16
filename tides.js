@@ -3,10 +3,11 @@ const moment = require('moment');
 
 module.exports = Tides;
 
-function Tides(url){
+function Tides(station, start, end){
   'use strict';
-  var tideData
+  var tideData;
   var tideEvents = [];
+  var url = 'https://tidesandcurrents.noaa.gov/api/datagetter?product=predictions&application=NOS.COOPS.TAC.WL&begin_date=' + moment(start).format("YYYYMMDD") + '&end_date=' + moment(end).add(10, "day").format("YYYYMMDD") + '&datum=MLLW&station=' + station + '&time_zone=lst_ldt&units=english&interval=hilo&format=json';
   this.update = function(){
     request(url, function(err, res, body){
       if(body){
