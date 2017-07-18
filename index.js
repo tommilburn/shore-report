@@ -14,15 +14,6 @@ console.log(beaches);
 /*
 app.get('/seaside', function(req, res){
   var date = moment();
-  var beach = seaside;
-  if(!beach.tides.error && !beach.weather.error){
-    var events = beach.tides.tidesOnDay(date).concat(beach.weather.eventsOnDay(date)); 
-    events = events.sort(function(a, b){
-      a = a.date.unix();
-      b = b.date.unix();
-      return a<b ? -1 : a>b ? 1: 0;
-    });
-  }
   res.render('index', {weather: beach.weather.weatherOnDay(date), ocean: beach.ocean.getTemp(), events: events, currentWeather: beach.weather.getCurrentWeather()});
 });
 */
@@ -41,7 +32,10 @@ app.get('/:beach/:date', function(req, res){
 });
 */
 app.get('/:beach', function(req, res){
-    res.send(beaches.getBeach(req.params.beach));
+    var beach = beaches.getBeach(req.params.beach);
+    if(!beach.error){
+      res.send(beach.currentStatus());
+    }
 });
 app.get('*', function(req, res){
 });

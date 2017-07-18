@@ -21,7 +21,9 @@ function Beach(source){
     currentData.weather.update();
     currentData.ocean.update();
   }
-  this.getInfo = function(){
-    return JSON.stringify(currentData.tides.getTides()) + JSON.stringify(currentData.weather.getCurrentWeather()) + JSON.stringify(currentData.weather.weatherOnDay(moment())) + JSON.stringify(currentData.ocean.getTemperature());
+  this.currentStatus = function(){
+    var current = currentData.weather.getCurrentWeather();
+    current.oceanTemp = currentData.ocean.getTemperature();
+    return current;
   }
 }

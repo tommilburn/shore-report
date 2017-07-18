@@ -31,7 +31,7 @@ function Model(timerInterval){
     console.log(beachName);
     console.log(this.beaches[beachName]);
     if(this.beaches[beachName]){
-      return this.beaches[beachName].getInfo();
+      return this.beaches[beachName];
     } else { 
       return {error:"That beach isn't recognized"};
     };
