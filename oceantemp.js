@@ -44,7 +44,7 @@ function Ocean(queryType, selector){
       request(url, function(err, res, body){
         if(body){
           console.log(body);
-          temperature = JSON.parse(body).data[0].v;
+          temperature = JSON.parse(body).data[0].v + "° F";
         }
       });
     }

@@ -28,8 +28,6 @@ function Model(timerInterval){
     this.beaches[beachInfo[i].url].update();
   }
   this.getBeach = function(beachName){
-    console.log(beachName);
-    console.log(this.beaches[beachName]);
     if(this.beaches[beachName]){
       return this.beaches[beachName];
     } else { 

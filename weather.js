@@ -17,6 +17,7 @@ function Weather(latitude, longitude){
     .exclude('minutely,hourly,flags')
     .get()
     .then(function(res){
+      console.log(res);
       rawData = res;
       weather.currently = rawData.currently;
       weather.days = [];
@@ -32,7 +33,6 @@ function Weather(latitude, longitude){
       weather.error = err;
     });
   };
-  
 
   this.weatherOnDay = function(requestedDay){
     if(weather.days){

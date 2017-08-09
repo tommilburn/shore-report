@@ -1,8 +1,10 @@
 require('dotenv').config();
 const moment = require('moment');
 const express = require('express');
+
 const app = express();
 const pug = require('pug');
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug')
 app.set('views', './views')
 var Model = require('./model.js');
@@ -10,7 +12,6 @@ var Model = require('./model.js');
 var apiCalls = 900; //only 1000 free API calls allowed to Darksky per day, so 900 to be safe
 
 var beaches = new Model(900);
-console.log(beaches);
 /*
 app.get('/seaside', function(req, res){
   var date = moment();
@@ -32,9 +33,12 @@ app.get('/:beach/:date', function(req, res){
 });
 */
 app.get('/:beach', function(req, res){
+    var day = moment();
+    console.log(req.originalUrl);
     var beach = beaches.getBeach(req.params.beach);
-    if(!beach.error){
-      res.send(beach.currentStatus());
+    if(typeof(beach) === "object" && !beach.error){
+      console.log(beach.currentStatus());
+      res.render('beach', {currentWeather: beach.currentStatus(), dailyWeather: beach.weatherOnDay(day)});
     }
 });
 app.get('*', function(req, res){

@@ -1,4 +1,5 @@
 extends layout.pug  
+
 block content
   if currentWeather
     .event.weather
@@ -6,13 +7,14 @@ block content
       p humidity: #{parseInt(currentWeather.humidity * 100)}%
       p precipitation: #{parseInt(currentWeather.precipProbability * 100)}%
       p winds: #{parseInt(currentWeather.windSpeed)} mph
-      if !weather.error
-        p #{weather.summary}
-        p #{parseInt(weather.apparentTemperatureMax)}&deg;F / #{parseInt(weather.apparentTemperatureMin)}&deg;F
-        p ocean: #{ocean}
+      p ocean: #{currentWeather.oceanTemp}
+
+      if dailyWeather && !dailyWeather.error
+        p #{dailyWeather.summary}
+        p #{parseInt(dailyWeather.apparentTemperatureMax)}&deg;F / #{parseInt(dailyWeather.apparentTemperatureMin)}&deg;F
   else
     p Current weather is unavailable, currently!
-  if events.length > 2 
+  if events && events.length > 2 
     each event in events
       .event(class=event.type)
         h4 
