@@ -6,24 +6,39 @@ var tides = require('./tides.js');
 module.exports = Beach;
 
 function Beach(source){
-  var currentData = {};
-  console.log(source);
-
-  currentData.weather = new weather(source.latitude, source.longitude);
-  currentData.tides = new tides(source.station, moment(), moment().add(7, 'days'));
+  this.name = source.name;
+  this.url = source.url;
+  var name = source.name;
+  var w = new weather(source.latitude, source.longitude);
+  var t = new tides(source.station, moment(), moment().add(7, 'days'));
+  var o;
   if(source.scrapeOceanUrl && source.scrapeOceanLocation){
-    currentData.ocean = new ocean(source.scrapeOceanUrl, source.scrapeOceanLocation);
+    o = new ocean(source.scrapeOceanUrl, source.scrapeOceanLocation);
   } else {
-    currentData.ocean = new ocean(source.station);
+    o = new ocean(source.station);
   }
   this.update = function(){
-    currentData.tides.update();
-    currentData.weather.update();
-    currentData.ocean.update();
+    console.log("updating " + name + " " + moment().format('LLLL'));
+    w.update();
+    t.update();
+    o.update();
   }
-  this.currentStatus = function(){
-    var current = currentData.weather.getCurrentWeather();
-    current.oceanTemp = currentData.ocean.getTemperature();
-    return current;
+  this.currently = function(){
+    var d = w.getCurrentWeather();
+    d.oceanTemp = o.getTemperature();
+    return d;
+  }
+  this.weatherOnDay = function(day){
+    return w.weatherOnDay(day);
+  }
+  this.eventsOnDay = function(day){
+    var events = t.tidesOnDay(day).concat(w.eventsOnDay(day)); 
+    events = events.sort(function(a, b){
+      a = a.date.unix();
+      b = b.date.unix();
+      return a < b ? -1 : a > b ? 1: 0;
+    });
+//    console.log(events);
+    return events;
   }
 }

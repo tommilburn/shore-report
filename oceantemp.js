@@ -43,7 +43,7 @@ function Ocean(queryType, selector){
       var url = 'https://tidesandcurrents.noaa.gov/api/datagetter?product=water_temperature&date=latest&station=' + station + '&format=json&units=english&time_zone=lst_ldt';
       request(url, function(err, res, body){
         if(body){
-          console.log(body);
+          //console.log(body);
           temperature = JSON.parse(body).data[0].v + "° F";
         }
       });

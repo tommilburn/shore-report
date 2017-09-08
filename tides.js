@@ -17,6 +17,7 @@ function Tides(station, start, end){
     });
   }
   function buildTides() {
+    tideEvents = [];
     for(var i = 0; i < tideData.predictions.length; i ++){
       var tideEvent = {}
       if(tideData.predictions[i].type === "H"){

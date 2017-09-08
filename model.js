@@ -21,11 +21,18 @@ var beachInfo = [
   }
 ]
 module.exports = Model;
-function Model(timerInterval){
+function Model(dailyCalls){
+  this.dailyCalls = dailyCalls;
+  this.updateInterval = (24 * 60 * 60 * 1000 / dailyCalls) * beachInfo.length;
+  console.log("interval: " + this.updateInterval);
   this.beaches = [];
+  var timers = [];
   for(var i = 0; i < beachInfo.length; i++){
     this.beaches[beachInfo[i].url] = new beach(beachInfo[i]);
-    this.beaches[beachInfo[i].url].update();
+    var updateBeach = this.beaches[beachInfo[i].url].update;
+    updateBeach();
+    setInterval(updateBeach, this.updateInterval);
+    
   }
   this.getBeach = function(beachName){
     if(this.beaches[beachName]){
