@@ -37,6 +37,10 @@ app.get('/:beach/:date', function(req, res){
   }
 });
 
+app.get('/', function(req, res){
+  res.render('home', {beaches: beaches});
+});
+
 app.get('*', function(req, res){
   res.send(500);
 });
