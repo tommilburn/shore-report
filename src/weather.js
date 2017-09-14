@@ -24,8 +24,8 @@ function Weather(latitude, longitude){
       weather.events = []
       for(var i = 0; i < rawData.daily.data.length; i++){
         weather.days.push({type: "weather", date: moment().startOf('day').add(i, 'days'), info: rawData.daily.data[i]});
-        weather.events.push({type:"Sunrise", date: moment(rawData.daily.data[i].sunriseTime, "X")});
-        weather.events.push({type:"Sunset", date: moment(rawData.daily.data[i].sunsetTime, "X")});
+        weather.events.push({type:"sunrise", date: moment(rawData.daily.data[i].sunriseTime, "X")});
+        weather.events.push({type:"sunset", date: moment(rawData.daily.data[i].sunsetTime, "X")});
       }
     })
     .catch(function(err){

@@ -3,9 +3,10 @@ body{
 	margin: 0;
 	font-family: Lato, 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, sans-serif; 
 	text-align: center;
+        background-color: #fcfffa; 
 }
 header{
-	padding-top: .5em;
+	padding: .5em;
 }
 .event{
 	padding: 1em;

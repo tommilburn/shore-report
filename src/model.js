@@ -42,5 +42,15 @@ function Model(dailyCalls){
     };
 
   }
+  this.getBeachLinks = function(){
+    var links = [];
+    for(b in this.beaches){
+      var link = {};
+      link.name = this.beaches[b].name;
+      link.url = this.beaches[b].url;
+      links.push(link);
+    }
+    return links;
+  }
 }
 

@@ -1,9 +1,14 @@
 require('dotenv').config();
 const moment = require('moment');
 const express = require('express');
-
+const bodyParser = require('body-parser')
+const fs = require('fs');
 const app = express();
 const pug = require('pug');
+const validator = require('validator');
+var jsonParser = bodyParser.json()
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug')
 app.set('views', './views')
@@ -38,7 +43,18 @@ app.get('/:beach/:date', function(req, res){
 });
 
 app.get('/', function(req, res){
-  res.render('home', {beaches: beaches});
+  res.render('home', {available: beaches.getBeachLinks()});
+});
+
+app.post('/request', urlencodedParser, function(req, res){
+  var request = validator.blacklist(req.body.locationRequested, "[a-z]");
+  console.log(request);
+  if(request.length < 120){
+    fs.appendFile('requests.txt', request + '\n', function(err){
+      if(err) throw err;
+      console.log('saved');
+    });
+  };
 });
 
 app.get('*', function(req, res){
