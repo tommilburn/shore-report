@@ -15,6 +15,8 @@ block content
           a(href=l.url) #{l.name}
       - alternator = !alternator;
         
+  if(messages.submission === 'success')
+    h3 Submission successful.
   h3 Request a location:
   form(action="/request" method="post")
     input(type="text" name="locationRequested" size="20")

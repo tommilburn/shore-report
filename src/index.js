@@ -24,7 +24,9 @@ app.get('/:beach', function(req, res){
     var beach = beaches.getBeach(req.params.beach);
     if(typeof(beach) === "object" && !beach.error){
       //console.log(beach.currently());
-      res.render('beach', {currentWeather: beach.currently(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day)});
+      res.render('beach', {beach: beach, currentWeather: beach.currently(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day)});
+    } else {
+      res.render('error', {message: "We don't have that location yet!"});
     }
 });
 
@@ -43,16 +45,20 @@ app.get('/:beach/:date', function(req, res){
 });
 
 app.get('/', function(req, res){
-  res.render('home', {available: beaches.getBeachLinks()});
+  var messages = {};
+  messages.submission = req.query.submission;
+  console.log(messages);
+  res.render('home', {available: beaches.getBeachLinks(), messages});
 });
 
 app.post('/request', urlencodedParser, function(req, res){
-  var request = validator.blacklist(req.body.locationRequested, "[a-z]");
+  var request = validator.whitelist(req.body.locationRequested, /a-zA-Z0-9 /);
   console.log(request);
   if(request.length < 120){
     fs.appendFile('requests.txt', request + '\n', function(err){
       if(err) throw err;
       console.log('saved');
+      res.redirect('/?submission=success');
     });
   };
 });

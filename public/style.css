@@ -120,3 +120,11 @@ p{
 .old {
 	display: none;
 }
+input[type=submit]{
+        padding:7px 15px; background:#ccc; border:0 none;
+        cursor:pointer;
+        margin-left: 5px;
+}
+input[type=text]{
+        padding: 5px;
+}

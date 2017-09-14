@@ -1,0 +1,8 @@
+extends layout.pug  
+block content
+  header
+    h1 Something went wrong!
+    if(message)
+      h3 #{message}
+    h3 
+      a(href="/") return to the home page

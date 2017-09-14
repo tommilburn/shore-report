@@ -8,13 +8,14 @@ module.exports = Ocean
 var temperature = ""
 
 function Ocean(queryType, selector){
+  console.log('query: ' + queryType + ' selector: ' + selector);
 	var temperature = {};
   if(selector){
     this.update = makeScrapeUpdater(queryType, selector);
   } else if(typeof(queryType) === "number") {
     this.update = makeNoaaUpdater(queryType);
   } else {
-    console.log("error in fetching ocean tides");
+    console.log("error in fetching ocean temp");
     this.temperature = "error";
     this.update = function(){return "error"};
   }
@@ -43,8 +44,14 @@ function Ocean(queryType, selector){
       var url = 'https://tidesandcurrents.noaa.gov/api/datagetter?product=water_temperature&date=latest&station=' + station + '&format=json&units=english&time_zone=lst_ldt';
       request(url, function(err, res, body){
         if(body){
-          //console.log(body);
-          temperature = JSON.parse(body).data[0].v + "° F";
+          var response = JSON.parse(body); 
+
+          console.log(response.data);
+          if(response.data && response.data[0] && response.data[0].v){
+            temperature = response.data[0].v + "° F";
+          } else {
+            temperature = "error";
+          }
         }
       });
     }

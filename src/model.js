@@ -9,7 +9,7 @@ var beachInfo = [
     latitude: '39.945594',
     longitude: '-74.069116',
     scrapeOceanUrl: 'http://www.surfline.com/surf-report/casino-pier-mid-atlantic_4279/', 
-    scrapeOceanLocation: '#content > div.two-column300-left > div:nth-child(9) > div:nth-child(2) > span:nth-child(5)',
+    scrapeOceanLocation: '#content > div.two-column300-left > div:nth-child(9) > div:nth-child(2) > span:nth-child(5)'
   },
   {
     url:"capemay",
@@ -17,7 +17,20 @@ var beachInfo = [
     station: 8536110,
     latitude: '38.934205',
     longitude: '-74.900494',
-    noaaOceanUrl: 'https://tidesandcurrents.noaa.gov/api/datagetter?product=water_temperature&date=latest&station=8536110&format=json&units=english&time_zone=lst_ldt',
+  },
+  {
+    url: "atlantic-city",
+    name:"Atlantic City",
+    station: 8534720,
+    latitude: '39.364283',
+    longitude: '-74.422927',
+  },
+  {
+    url: "ocean-beach",
+    name:"Ocean Beach",
+    station: 8532885,
+    latitude: '39.981507',
+    longitude: '-74.066248',
   }
 ]
 module.exports = Model;

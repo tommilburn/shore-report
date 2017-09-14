@@ -13,10 +13,12 @@ function Beach(source){
   var t = new tides(source.station, moment(), moment().add(7, 'days'));
   var o;
   if(source.scrapeOceanUrl && source.scrapeOceanLocation){
+    console.log('scrape ocean temp');
     o = new ocean(source.scrapeOceanUrl, source.scrapeOceanLocation);
   } else {
+    console.log('regular noaa ocean temp');
     o = new ocean(source.station);
-  }
+  } 
   this.update = function(){
     console.log("updating " + name + " " + moment().format('LLLL'));
     w.update();
