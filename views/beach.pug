@@ -16,18 +16,25 @@ block content
       p #{parseInt(dailyWeather.apparentTemperatureMax)}&deg;F / #{parseInt(dailyWeather.apparentTemperatureMin)}&deg;F
   if events && events.length > 2 
     each event in events
-      if(event.date.diff(now) > 0)
+      if(now)
+        if(event.date.diff(now) > 0)
+          .event(class=event.type)
+            h4 
+              =event.type
+            h2
+              =event.date.format('h:mm a')
+            if(event.date.diff(now, 'hours') > 1)
+              h4 in #{event.date.diff(now, 'hours')} hours
+            else if(event.date.diff(now, 'minutes') > 60)
+              h4 in 1 hour 
+            else
+              h4 in #{event.date.diff(now, 'minutes')} minutes
+      else
         .event(class=event.type)
           h4 
             =event.type
           h2
             =event.date.format('h:mm a')
-          if(event.date.diff(now, 'hours') > 1)
-            h4 in #{event.date.diff(now, 'hours')} hours
-          else if(event.date.diff(now, 'minutes') == 60)
-            h4 in 1 hour 
-          else
-            h4 in #{event.date.diff(now, 'minutes')} minutes
   else
     p Events aren't updating properly. Please try again later.
   footer.sand

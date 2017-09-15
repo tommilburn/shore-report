@@ -8,6 +8,7 @@ module.exports = Beach;
 function Beach(source){
   this.name = source.name;
   this.url = source.url;
+  var timeOffset = source.timeOffset;
   var name = source.name;
   var w = new weather(source.latitude, source.longitude);
   var t = new tides(source.station, moment(), moment().add(7, 'days'));
@@ -35,7 +36,6 @@ function Beach(source){
   };
   this.eventsOnDay = function(day){
     var events = t.tidesOnDay(day).concat(w.eventsOnDay(day)); 
-    console.log(t.tidesOnDay(day));
     events = events.sort(function(a, b){
       a = a.date.unix();
       b = b.date.unix();
@@ -43,5 +43,14 @@ function Beach(source){
     });
 //    console.log(events);
     return events;
+  }
+  this.getLocalTime = function(){
+    console.log(this.name);
+    if(timeOffset){
+      return moment().add(timeOffset, 'hours'); //times are on the east coast because everything revolves around me
+    }
+    else{
+      return moment();
+    }
   }
 }

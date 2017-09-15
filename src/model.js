@@ -38,6 +38,7 @@ var beachInfo = [
     station: 9414290,
     latitude: '37.774929',
     longitude: '-122.419416',
+    timeOffset: -3
   }
 ]
 module.exports = Model;

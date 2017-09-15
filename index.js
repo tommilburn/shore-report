@@ -23,10 +23,11 @@ var apiCalls = 900; //only 1000 free API calls allowed to Darksky per day, so 90
 var beaches = new Model(apiCalls);
 
 app.get('/:beach', function(req, res){
-    var day = moment()
+    var day = moment();
+    var now = moment();
     var beach = beaches.getBeach(req.params.beach);
     if(typeof(beach) === "object" && !beach.error){
-      res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day});
+      res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day, now: beach.getLocalTime()});
     } else {
       res.render('error', {message: "We don't have that location yet!"});
     }
@@ -37,7 +38,8 @@ app.get('/:beach/:date', function(req, res){
   var day = moment(req.params.date, "YYYY-MM-DD", true);
   if(req.params.date === 'today'){
     day = moment();
-    res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day});
+    var now = day;
+    res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day, now: beach.getLocalTime()});
   } else if (req.params.date === "tomorrow"){
     day = moment().add(1, 'day');
     res.render('beach', {beach: beach, dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day});
@@ -56,11 +58,9 @@ app.get('/', function(req, res){
 
 app.post('/request', urlencodedParser, function(req, res){
   var request = validator.whitelist(req.body.locationRequested, /a-zA-Z0-9 /);
-  console.log(request);
   if(request.length < 120){
     fs.appendFile('requests.txt', request + '\n', function(err){
       if(err) throw err;
-      console.log('saved');
       res.redirect('/?submission=success');
     });
   };
