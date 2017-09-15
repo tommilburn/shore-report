@@ -152,6 +152,10 @@ input[type=text]{
 .sand h3{
     margin: 0;
 }
+.butt a{
+    font-size: 0.75em;
+    font-weight: normal;
+}
 .sun{
     position: absolute;
     top: 0;
