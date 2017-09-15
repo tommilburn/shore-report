@@ -1,7 +1,7 @@
 extends layout.pug  
 block content
   header
-    h1 #{beach.name} Shore Report
+    h1 #{beach.name} Current Conditions
   if currentWeather
     .event.weather
       p now: #{parseInt(currentWeather.temperature)}&deg;F

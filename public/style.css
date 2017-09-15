@@ -1,138 +1,140 @@
 body{
-	padding: 0;
-	margin: 0;
-	font-family: Lato, 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, sans-serif; 
-	text-align: center;
-        background-color: #fcfffa; 
+    padding: 0;
+    margin: 0;
+    font-family: Lato, 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, sans-serif; 
+    text-align: center;
+    background-color: #fcfffa; 
 }
 .event{
-	padding: 1em;
+    padding: 1em;
 }
 h1{
-	font-size: 2.5em;
-	font-weight:100;
+    font-size: 2.5em;
+    font-weight:100;
 }
 h2{
-        font-size: 1.5em;
-        font-weight: 200;
+    font-size: 1.5em;
+    font-weight: 200;
 }
 h1, h2, h4{
-	margin: 0;
+    margin: 0;
 }
 h2 a{
-        color:#0078ff;
+    color:#0078ff;
 }
 h4{
-	font-weight: normal;
+    font-weight: normal;
 }
 .sunset{
-	background-color: #ff566e;
-	background-image: -moz-linear-gradient(left, #ff7e2a, #ff566d);
-	background-image: -ms-linear-gradient(left, #ff7e2a, #ff566d);
-	background-image: -o-linear-gradient(left, #ff7e2a, #ff566d);
-	background-image: -webkit-gradient(linear, 
-	left top, right top, from(#ff7e2a), to(#ff566d));
-	background-image: -webkit-linear-gradient(left, #ff7e2a, #ff566d);
+    background-color: #ff566e;
+    background-image: -moz-linear-gradient(left, #ff7e2a, #ff566d);
+    background-image: -ms-linear-gradient(left, #ff7e2a, #ff566d);
+    background-image: -o-linear-gradient(left, #ff7e2a, #ff566d);
+    background-image: -webkit-gradient(linear, 
+    left top, right top, from(#ff7e2a), to(#ff566d));
+    background-image: -webkit-linear-gradient(left, #ff7e2a, #ff566d);
 }
 .sunrise{
-	background-color: #ff7e00;
-	background-image: -moz-linear-gradient(right, #ff7e2a, #ff566d);
-	background-image: -ms-linear-gradient(right, #ff7e2a, #ff566d);
-	background-image: -o-linear-gradient(right, #ff7e2a, #ff566d);
-	background-image: -webkit-gradient(linear, 
-		right top, left top, from(#ff7e2a), to(#ff566d));
-	background-image: -webkit-linear-gradient(right, #ff7e2a, #ff566d);
+    background-color: #ff7e00;
+    background-image: -moz-linear-gradient(right, #ff7e2a, #ff566d);
+    background-image: -ms-linear-gradient(right, #ff7e2a, #ff566d);
+    background-image: -o-linear-gradient(right, #ff7e2a, #ff566d);
+    background-image: -webkit-gradient(linear, 
+	    right top, left top, from(#ff7e2a), to(#ff566d));
+    background-image: -webkit-linear-gradient(right, #ff7e2a, #ff566d);
 }
 .high{
-	background-image: -moz-linear-gradient(left, #1270b0, #31c3f7);
-	background-image: -ms-linear-gradient(left, #1270b0, #31c3f7);
-	background-image: -o-linear-gradient(left, #1270b0, #31c3f7);
-	background-image: -webkit-gradient(linear, 
-		left top, right top, from(#1270b0), to(#31c3f7));
-	background-image: -webkit-linear-gradient(left, #1270b0, #31c3f7);
+    background-image: -moz-linear-gradient(left, #1270b0, #31c3f7);
+    background-image: -ms-linear-gradient(left, #1270b0, #31c3f7);
+    background-image: -o-linear-gradient(left, #1270b0, #31c3f7);
+    background-image: -webkit-gradient(linear, 
+	    left top, right top, from(#1270b0), to(#31c3f7));
+    background-image: -webkit-linear-gradient(left, #1270b0, #31c3f7);
 
 }
 .low{
-	background-image: -moz-linear-gradient(right, #1270b0, #31c3f7);
-	background-image: -ms-linear-gradient(right, #1270b0, #31c3f7);
-	background-image: -o-linear-gradient(right, #1270b0, #31c3f7);
-	background-image: -webkit-gradient(linear, 
-		right top, left top, from(#1270b0), to(#31c3f7));
-	background-image: -webkit-linear-gradient(right, #1270b0, #31c3f7);
+    background-image: -moz-linear-gradient(right, #1270b0, #31c3f7);
+    background-image: -ms-linear-gradient(right, #1270b0, #31c3f7);
+    background-image: -o-linear-gradient(right, #1270b0, #31c3f7);
+    background-image: -webkit-gradient(linear, 
+	    right top, left top, from(#1270b0), to(#31c3f7));
+    background-image: -webkit-linear-gradient(right, #1270b0, #31c3f7);
 }
 header{
-	background-color: #99ebf7;
-        position: relative;
-        padding-top:0.5em;
-	overflow:hidden;
+    background-color: #99ebf7;
+    position: relative;
+    padding-top:0.75em;
+    overflow:hidden;
 }
 .butt{
-	-moz-box-sizing: border-box; 
-	-webkit-box-sizing: border-box; 
-	box-sizing: border-box;
-	font-weight: 100;
-	margin: 1em 5%;
-	float:left;
-	text-align: center;
-	width: 40%;
-	font-size: 1.25em;
+    box-sizing: border-box;
+    font-weight: 100;
+    margin: 0.5em 5%;
+    padding: .5em 0;
+    float: left;
+    text-align: center;
+    width: 40%;
+    font-size: 1.25em;
 }
 .butt h4{
-	padding:.75em 0;
+    padding:.75em 0;
 }
 .selected{
-	background-color: #8fcccc;
-	font-weight: 300;
+    background-color: #8fcccc;
+    font-weight: 300;
 }
 .container{
-	max-width: 44em;
-	min-width: 14em;
-	margin: 0 auto;
-	background-color: #fcfffa;
+    max-width: 44em;
+    min-width: 14em;
+    margin: 0 auto;
+    background-color: #fcfffa;
 }
 .weather{
-	border-top: 3px solid #cccccc;
-	border-bottom: 3px solid #cccccc;
-	padding: 1em;
-	font-size: 1.5em;
+    border-top: 3px solid #cccccc;
+    border-bottom: 3px solid #cccccc;
+    padding: 1em;
+    font-size: 1.5em;
 }
 .buttons{
-	width: 100%;
-	margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;
 }
 .buttons .butt{
-	border: 1px solid #8feeee;
+    border: 1px solid #8feeee;
 }
 a, a.visited, a.hover{
-	text-decoration: none;
-	color: #000000;
+    text-decoration: none;
+    color: #000000;
 }
-footer a:hover{
-	color: #dddddd;
+footer {
+    overflow: hidden;
+    padding-bottom: 0.5em;
 }
 footer .butt{
-	transition: background-color 0.25s ease;
-	border: 1px solid #eeeeee;
-	color: #dddddd;
+    transition: background-color 0.25s ease;
+    border: 1px solid #d4a96f;
+    color: #dddddd;
+    cursor: pointer;
 }
 footer .butt:hover{
-	background-color:#ff7e2a;
-	color: #fff;
+    background-color:#d4a96f;
+    color: #fff;
 }
 p{
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 .old {
-	display: none;
+    display: none;
 }
 input[type=submit]{
-        padding:7px 15px; background:#ccc; border:0 none;
-        cursor:pointer;
-        margin-left: 5px;
+    padding:7px 15px; background:#ccc; border:0 none;
+    cursor:pointer;
+    margin-left: 5px;
+    background-color: #d4a96f;
 }
 input[type=text]{
-        padding: 5px;
+    padding: 5px;
 }
 .pixelArt { 
     width: 100%;
@@ -142,11 +144,10 @@ input[type=text]{
     image-rendering: pixelated;
     image-rendering: optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
-
 }
 .sand {
     background-color: #dbb787;
-    padding: 0.25em;
+    padding: 0.5em 0.25em;
 }
 .sand h3{
     margin: 0;

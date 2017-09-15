@@ -17,5 +17,14 @@ block content
   .sand
     h3 Request a location:
     form(action="/request" method="post")
-      input(type="text" name="locationRequested" size="20")
+      input(type="text" name="locationRequested" size="25")
       input(type="submit")
+  footer.sand
+    .butt
+      a(href='https://darksky.net/') powered by darksky
+    .butt
+      a(href='https://tidesandcurrents.noaa.gov/api/') tides from noaa
+    .butt
+      a(href='thomasmilburn.com') made by tom milburn in 2017
+    .butt
+      a(href='https://github.com/tommilburn/shore-report') github
