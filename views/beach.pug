@@ -2,21 +2,18 @@ extends layout.pug
 block content
   header
     h1 #{beach.name}
-    h1 Current Conditions
-  if currentWeather
-    .event.weather
+    h1 #{day.format('MMMM Do')}
+  .event.weather
+    if currentWeather
       p now: #{parseInt(currentWeather.temperature)}&deg;F
       p humidity: #{parseInt(currentWeather.humidity * 100)}%
       p precipitation: #{parseInt(currentWeather.precipProbability * 100)}%
       p winds: #{parseInt(currentWeather.windSpeed)} mph
       if(ocean !== "error")
         p ocean: #{ocean}
-
-      if dailyWeather && !dailyWeather.error
-        p #{dailyWeather.summary}
-        p #{parseInt(dailyWeather.apparentTemperatureMax)}&deg;F / #{parseInt(dailyWeather.apparentTemperatureMin)}&deg;F
-  else
-    p Current weather is unavailable, currently!
+    if dailyWeather && !dailyWeather.error
+      p #{dailyWeather.summary}
+      p #{parseInt(dailyWeather.apparentTemperatureMax)}&deg;F / #{parseInt(dailyWeather.apparentTemperatureMin)}&deg;F
   if events && events.length > 2 
     each event in events
       if(event.date.diff(now) > 0)
@@ -33,3 +30,7 @@ block content
             h4 in #{event.date.diff(now, 'minutes')} minutes
   else
     p Events aren't updating properly. Please try again later.
+  footer.sand
+    a(href="/")
+      .butt.wide
+        p home

@@ -26,7 +26,7 @@ app.get('/:beach', function(req, res){
     var day = moment()
     var beach = beaches.getBeach(req.params.beach);
     if(typeof(beach) === "object" && !beach.error){
-      res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), time: day});
+      res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day});
     } else {
       res.render('error', {message: "We don't have that location yet!"});
     }
@@ -36,13 +36,15 @@ app.get('/:beach/:date', function(req, res){
   var beach = beaches.getBeach(req.params.beach);
   var day = moment(req.params.date, "YYYY-MM-DD", true);
   if(req.params.date === 'today'){
-    res.send(req.params.beach + " today");
+    day = moment();
+    res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day});
   } else if (req.params.date === "tomorrow"){
-    res.send(req.params.beach + " tomorrow");
+    day = moment().add(1, 'day');
+    res.render('beach', {beach: beach, dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day});
   } else if(day.isValid()){
-    res.render('beach', {dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day)});
+    res.render('beach', {beach: beach, dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), day: day});
   } else {
-    res.send(req.params.beach + ", problem with date");
+    res.render('error', {message: "That date is invalid or we don't have information for it"});
   }
 });
 

@@ -113,12 +113,13 @@ footer {
 footer .butt{
     transition: background-color 0.25s ease;
     border: 1px solid #d4a96f;
-    color: #dddddd;
+    color: #000000;
     cursor: pointer;
+    font-size: 1em;
+    font-weight: normal;
 }
 footer .butt:hover{
     background-color:#d4a96f;
-    color: #fff;
 }
 p{
     padding: 0;
@@ -155,6 +156,9 @@ input[type=text]{
 .butt a{
     font-size: 0.75em;
     font-weight: normal;
+}
+.butt.wide{
+    width: 90%;
 }
 .sun{
     position: absolute;
