@@ -1,7 +1,8 @@
 extends layout.pug  
 block content
   header
-    h1 #{beach.name} Current Conditions
+    h1 #{beach.name}
+    h1 Current Conditions
   if currentWeather
     .event.weather
       p now: #{parseInt(currentWeather.temperature)}&deg;F
@@ -18,10 +19,17 @@ block content
     p Current weather is unavailable, currently!
   if events && events.length > 2 
     each event in events
-      .event(class=event.type)
-        h4 
-          =event.type
-        h2
-          =event.date.format('h:mm a')
+      if(event.date.diff(now) > 0)
+        .event(class=event.type)
+          h4 
+            =event.type
+          h2
+            =event.date.format('h:mm a')
+          if(event.date.diff(now, 'hours') > 1)
+            h4 in #{event.date.diff(now, 'hours')} hours
+          else if(event.date.diff(now, 'minutes') == 60)
+            h4 in 1 hour 
+          else
+            h4 in #{event.date.diff(now, 'minutes')} minutes
   else
     p Events aren't updating properly. Please try again later.

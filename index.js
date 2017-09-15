@@ -26,7 +26,7 @@ app.get('/:beach', function(req, res){
     var day = moment()
     var beach = beaches.getBeach(req.params.beach);
     if(typeof(beach) === "object" && !beach.error){
-      res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day)});
+      res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day), time: day});
     } else {
       res.render('error', {message: "We don't have that location yet!"});
     }
