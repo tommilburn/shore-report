@@ -8,8 +8,9 @@ module.exports = Weather;
 function Weather(latitude, longitude){
   'use strict';
   var weather = {};
-  var rawData;
+  weather.days = [];
   var events = [];
+  var rawData;
   this.update = function () {
     forecast
     .latitude(latitude)
@@ -17,11 +18,11 @@ function Weather(latitude, longitude){
     .exclude('minutely,hourly,flags')
     .get()
     .then(function(res){
-      //console.log(res);
+      console.log(res);
       rawData = res;
       weather.currently = rawData.currently;
       weather.days = [];
-      weather.events = []
+      weather.events = [];
       for(var i = 0; i < rawData.daily.data.length; i++){
         weather.days.push({type: "weather", date: moment().startOf('day').add(i, 'days'), info: rawData.daily.data[i]});
         weather.events.push({type:"sunrise", date: moment(rawData.daily.data[i].sunriseTime, "X")});
@@ -51,7 +52,7 @@ function Weather(latitude, longitude){
         return moment(weatherEvent.date).isSame(requestedDay, "day");
       })
     } else {
-      return {error: weather.error};
+      return [];
     }
   }
 

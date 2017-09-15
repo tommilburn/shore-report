@@ -4,20 +4,18 @@ block content
   header
     h2 Welcome to Shore Report!
     h4 A one-stop shop for beach conditions and vacation weather information.
-  h3 Available locations:
+    img(class="pixelArt" src="../public/beach.png")
+  .sand
+    h3 Available locations:
   - var alternator = true;
     each l in available
-      if(alternator)
-        h2.sunrise
-          a(href=l.url) #{l.name}
-      else
-        h2.sunset
-          a(href=l.url) #{l.name}
-      - alternator = !alternator;
+      h2.sand
+        a(href=l.url) #{l.name}
         
   if(messages.submission === 'success')
     h3 Submission successful.
-  h3 Request a location:
-  form(action="/request" method="post")
-    input(type="text" name="locationRequested" size="20")
-    input(type="submit")
+  .sand
+    h3 Request a location:
+    form(action="/request" method="post")
+      input(type="text" name="locationRequested" size="20")
+      input(type="submit")

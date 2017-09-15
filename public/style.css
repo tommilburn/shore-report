@@ -5,18 +5,22 @@ body{
 	text-align: center;
         background-color: #fcfffa; 
 }
-header{
-	padding: .5em;
-}
 .event{
 	padding: 1em;
 }
-h1, h2{
+h1{
 	font-size: 2.5em;
 	font-weight:100;
 }
+h2{
+        font-size: 1.5em;
+        font-weight: 200;
+}
 h1, h2, h4{
 	margin: 0;
+}
+h2 a{
+        color:#0078ff;
 }
 h4{
 	font-weight: normal;
@@ -57,7 +61,9 @@ h4{
 	background-image: -webkit-linear-gradient(right, #1270b0, #31c3f7);
 }
 header{
-	background-color: #c5ffff;
+	background-color: #99ebf7;
+        position: relative;
+        padding-top:0.5em;
 	overflow:hidden;
 }
 .butt{
@@ -127,4 +133,26 @@ input[type=submit]{
 }
 input[type=text]{
         padding: 5px;
+}
+.pixelArt { 
+    width: 100%;
+    image-rendering: optimizeSpeed;           
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+
+}
+.sand {
+    background-color: #dbb787;
+    padding: 0.25em;
+}
+.sand h3{
+    margin: 0;
+}
+.sun{
+    position: absolute;
+    top: 0;
+    left: 0;
 }

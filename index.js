@@ -6,13 +6,16 @@ const fs = require('fs');
 const app = express();
 const pug = require('pug');
 const validator = require('validator');
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+const path = require('path');
 
-app.use(express.static(__dirname + '/public'));
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.use('/public', express.static(path.join(__dirname + '/public')));
+
 app.set('view engine', 'pug')
 app.set('views', './views')
-var Model = require('./model.js');
+var Model = require('./src/model.js');
 
 var apiCalls = 900; //only 1000 free API calls allowed to Darksky per day, so 900 to be safe
 
@@ -23,8 +26,8 @@ app.get('/:beach', function(req, res){
     //console.log(req.originalUrl);
     var beach = beaches.getBeach(req.params.beach);
     if(typeof(beach) === "object" && !beach.error){
-      //console.log(beach.currently());
-      res.render('beach', {beach: beach, currentWeather: beach.currently(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day)});
+      console.log(beach.currentOcean());
+      res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day)});
     } else {
       res.render('error', {message: "We don't have that location yet!"});
     }
@@ -62,9 +65,8 @@ app.post('/request', urlencodedParser, function(req, res){
     });
   };
 });
-
 app.get('*', function(req, res){
-  res.send(500);
+  app.send('404');
 });
 
 app.listen(3000, function(){

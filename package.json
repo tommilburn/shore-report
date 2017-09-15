@@ -2,9 +2,9 @@
   "name": "shore-report",
   "version": "1.0.0",
   "description": "daily new jersey beach information",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon -e js,pug src/index.js",
+    "start": "nodemon -e js,pug index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

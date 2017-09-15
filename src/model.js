@@ -4,7 +4,7 @@ const beach = require('./beach');
 var beachInfo = [
   {
     url: "seaside",
-    name: "Seaside Heights",
+    name: "Seaside Heights, NJ",
     station: 8533071,
     latitude: '39.945594',
     longitude: '-74.069116',
@@ -13,24 +13,31 @@ var beachInfo = [
   },
   {
     url:"capemay",
-    name: "Cape May",
+    name: "Cape May, NJ",
     station: 8536110,
     latitude: '38.934205',
     longitude: '-74.900494',
   },
   {
     url: "atlantic-city",
-    name:"Atlantic City",
+    name:"Atlantic City, NJ",
     station: 8534720,
     latitude: '39.364283',
     longitude: '-74.422927',
   },
   {
     url: "ocean-beach",
-    name:"Ocean Beach",
+    name:"Ocean Beach, NJ",
     station: 8532885,
     latitude: '39.981507',
     longitude: '-74.066248',
+  },
+  {
+    url: "san-francisco",
+    name:"San Francisco, CA",
+    station: 9414290,
+    latitude: '37.774929',
+    longitude: '-122.419416',
   }
 ]
 module.exports = Model;
@@ -45,9 +52,8 @@ function Model(dailyCalls){
     var updateBeach = this.beaches[beachInfo[i].url].update;
     updateBeach();
     setInterval(updateBeach, this.updateInterval);
-    
   }
-  this.getBeach = function(beachName){
+	this.getBeach = function(beachName){
     if(this.beaches[beachName]){
       return this.beaches[beachName];
     } else { 

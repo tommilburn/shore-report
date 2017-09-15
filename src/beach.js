@@ -25,16 +25,19 @@ function Beach(source){
     t.update();
     o.update();
   }
-  this.currently = function(){
+  this.currentWeather = function(){
     var d = w.getCurrentWeather();
-    d.oceanTemp = o.getTemperature();
     return d;
-  }
+  };
+  this.currentOcean = function(){
+    return o.getTemperature();
+  };
   this.weatherOnDay = function(day){
     return w.weatherOnDay(day);
-  }
+  };
   this.eventsOnDay = function(day){
     var events = t.tidesOnDay(day).concat(w.eventsOnDay(day)); 
+    console.log(t.tidesOnDay(day));
     events = events.sort(function(a, b){
       a = a.date.unix();
       b = b.date.unix();
