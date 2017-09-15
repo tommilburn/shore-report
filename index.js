@@ -8,6 +8,7 @@ const pug = require('pug');
 const validator = require('validator');
 const path = require('path');
 
+
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -15,18 +16,16 @@ app.use('/public', express.static(path.join(__dirname + '/public')));
 
 app.set('view engine', 'pug')
 app.set('views', './views')
-var Model = require('./src/model.js');
 
+var Model = require('./src/model.js');
 var apiCalls = 900; //only 1000 free API calls allowed to Darksky per day, so 900 to be safe
 
-var beaches = new Model(900);
+var beaches = new Model(apiCalls);
 
 app.get('/:beach', function(req, res){
     var day = moment()
-    //console.log(req.originalUrl);
     var beach = beaches.getBeach(req.params.beach);
     if(typeof(beach) === "object" && !beach.error){
-      console.log(beach.currentOcean());
       res.render('beach', {beach: beach, currentWeather: beach.currentWeather(), ocean: beach.currentOcean(), dailyWeather: beach.weatherOnDay(day), events: beach.eventsOnDay(day)});
     } else {
       res.render('error', {message: "We don't have that location yet!"});
@@ -50,7 +49,6 @@ app.get('/:beach/:date', function(req, res){
 app.get('/', function(req, res){
   var messages = {};
   messages.submission = req.query.submission;
-  console.log(messages);
   res.render('home', {available: beaches.getBeachLinks(), messages});
 });
 

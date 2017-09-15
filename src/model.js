@@ -44,7 +44,6 @@ module.exports = Model;
 function Model(dailyCalls){
   this.dailyCalls = dailyCalls;
   this.updateInterval = (24 * 60 * 60 * 1000 / dailyCalls) * beachInfo.length;
-  console.log("interval: " + this.updateInterval);
   this.beaches = [];
   var timers = [];
   for(var i = 0; i < beachInfo.length; i++){

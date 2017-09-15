@@ -1,0 +1,1 @@
+forever --minUptime 200000 --spinSleepTime 3600000 start index.js

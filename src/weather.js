@@ -18,7 +18,6 @@ function Weather(latitude, longitude){
     .exclude('minutely,hourly,flags')
     .get()
     .then(function(res){
-      console.log(res);
       rawData = res;
       weather.currently = rawData.currently;
       weather.days = [];

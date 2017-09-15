@@ -8,8 +8,7 @@ module.exports = Ocean
 var temperature = ""
 
 function Ocean(queryType, selector){
-  console.log('query: ' + queryType + ' selector: ' + selector);
-	var temperature = {};
+  var temperature = {};
   if(selector){
     this.update = makeScrapeUpdater(queryType, selector);
   } else if(typeof(queryType) === "number") {
@@ -28,7 +27,7 @@ function Ocean(queryType, selector){
 		return function(){
       xray(url, selector)(function(err, result){
         if(err){
-          console.log(err);
+            console.log(err);
           temperature = "unavailable"
         } else if(result.indexOf("°" != -1)){
           temperature = result.trim();
@@ -45,8 +44,6 @@ function Ocean(queryType, selector){
       request(url, function(err, res, body){
         if(body){
           var response = JSON.parse(body); 
-
-          console.log(response.data);
           if(response.data && response.data[0] && response.data[0].v){
             temperature = response.data[0].v + "° F";
           } else {
