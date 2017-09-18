@@ -41,7 +41,6 @@ function Beach(source){
       b = b.date.unix();
       return a < b ? -1 : a > b ? 1: 0;
     });
-//    console.log(events);
     return events;
   }
   this.getLocalTime = function(){

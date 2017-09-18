@@ -59,7 +59,6 @@ function Model(dailyCalls){
     } else { 
       return {error:"That beach isn't recognized"};
     };
-
   }
   this.getBeachLinks = function(){
     var links = [];
