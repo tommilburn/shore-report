@@ -8,7 +8,6 @@ const pug = require('pug');
 const validator = require('validator');
 const path = require('path');
 
-
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -65,6 +64,7 @@ app.post('/request', urlencodedParser, function(req, res){
     });
   };
 });
+
 app.get('*', function(req, res){
   app.send('404');
 });
